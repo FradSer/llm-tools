@@ -4,67 +4,80 @@
 
 English | [简体中文](README.zh-CN.md)
 
-This repository contains a collection of tools developed during my exploration of Large Language Models (LLMs). The tools are implemented using both JavaScript (Bun/Node.js) and Python, focusing on various aspects of LLM development and data processing.
+A comprehensive collection of tools designed to streamline the development, processing, and management of Large Language Model (LLM) applications. These tools are built with modern technologies and best practices, focusing on performance, reliability, and ease of use.
 
 ## Tools
 
 ### 1. tmx2jsonl
 
-A tool for converting TMX (Translation Memory eXchange) files to JSONL format, making it easier to use translation data with LLMs.
+A high-performance tool for converting TMX (Translation Memory eXchange) files to JSONL format, optimized for LLM training data preparation.
 
 - **Technology**: Bun + TypeScript
-- **Status**: Available
+- **Status**: Available ✅
+- **Features**:
+  - Fast processing of large TMX files
+  - Memory-efficient streaming
+  - Robust error handling
 - [Learn more about tmx2jsonl](./tmx2jsonl/README.md)
+
+### 2. jsonl2parquet
+
+A command-line tool for efficient conversion of JSONL files to Parquet format, optimized for machine learning workflows.
+
+- **Technology**: Python
+- **Status**: Available ✅
+- **Features**:
+  - High compression ratio
+  - Fast conversion speed
+  - Memory-efficient processing
+- [Learn more about jsonl2parquet](./jsonl2parquet/README.md)
 
 ## Project Structure
 
 ```
 llm-tools/
 ├── tmx2jsonl/        # TMX to JSONL converter
+├── jsonl2parquet/    # JSONL to Parquet converter
 └── ... (more tools coming soon)
 ```
 
 ## Technology Stack
 
-This project uses a combination of:
+This project leverages modern technologies for optimal performance:
 
-- **JavaScript Environment**: 
-  - Bun (or Node.js) for JavaScript/TypeScript tools
-  - TypeScript for type safety
-- **Python**:
-  - Python 3.x for Python-based tools
-  - Various ML/NLP libraries as needed
+- **JavaScript/TypeScript Tools**:
+  - Bun runtime for maximum performance
+  - TypeScript for type safety and better developer experience
+  - Modern ES modules and async/await patterns
+  
+- **Python Tools**:
+  - Python 3.8+ for compatibility with latest ML libraries
+  - pandas & pyarrow for efficient data processing
+  - Type hints for better code quality
 
 ## Getting Started
 
-Each tool has its own setup and usage instructions. Please refer to the individual tool's README for specific details.
+Each tool has its own setup and usage instructions. Please refer to the individual tool's README for specific details:
 
-## Development
-
-### Prerequisites
-
-- Bun (or Node.js) for JavaScript tools
-- Python 3.x for Python tools
-- Git
-
-### Setting Up the Development Environment
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/llm-tools.git
-cd llm-tools
-```
-
-2. Follow the setup instructions in each tool's directory for specific requirements.
+- [tmx2jsonl Setup Guide](./tmx2jsonl/README.md)
+- [jsonl2parquet Setup Guide](./jsonl2parquet/README.md)
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are warmly welcomed! Here's how you can help:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## Contact & Support
 
-If you have any questions or suggestions, please feel free to open an issue. 
+- Create an issue for bug reports or feature requests
+- Follow [@FradSer](https://twitter.com/FradSer) on Twitter for updates
+- Star this repo if you find it helpful! 

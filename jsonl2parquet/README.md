@@ -1,10 +1,22 @@
 # JSONL to Parquet Converter
 
-A simple command-line tool to convert JSONL (JSON Lines) files to Parquet format.
+A high-performance command-line tool to convert JSONL (JSON Lines) files to Parquet format, optimized for machine learning workflows.
+
+## Features
+
+- Fast and memory-efficient conversion
+- Automatic schema inference
+- Progress tracking with verbose mode
+- Support for large files through streaming
+- Built-in Parquet viewer utility
 
 ## Installation
 
-1. Clone this repository
+1. Clone this repository:
+```bash
+git clone <repository-url>
+cd jsonl2parquet
+```
 
 2. Create and activate a virtual environment:
 ```bash
@@ -18,118 +30,98 @@ source venv/bin/activate
 # venv\Scripts\activate
 ```
 
-3. Install the required dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Verify the installation:
+4. Verify installation:
 ```bash
 python -c "import pandas as pd; import pyarrow; print('Installation successful!')"
 ```
 
 ## Usage
 
-Basic usage:
+### Options
+
+- `-v, --verbose`: Enable verbose logging for progress tracking
+- `-n, --rows N`: Number of rows to display in viewer (default: 10)
+- `--help`: Display help information
+
+### Examples
+
+Basic conversion:
 ```bash
 python convert.py input.jsonl output.parquet
 ```
 
-Enable verbose logging:
-```bash
-python convert.py input.jsonl output.parquet -v
-```
-
-### View Parquet Contents
-
-To check the contents of a Parquet file, use the provided `view_parquet.py` script:
-
+View Parquet file contents:
 ```bash
 # View first 10 rows (default)
-python view_parquet.py path/to/file.parquet
+python view_parquet.py data.parquet
 
 # View specific number of rows
-python view_parquet.py path/to/file.parquet -n 5
-
-# Show help
-python view_parquet.py --help
-```
-
-The script will display:
-- Total number of rows
-- First N rows of data (default: 10)
-- Column data types
-
-### Arguments
-
-- `input`: Path to the input JSONL file
-- `output`: Path where the output Parquet file will be saved
-- `-v, --verbose`: Enable verbose logging (optional)
-
-### Example
-
-First, create a sample JSONL file:
-```bash
-echo '{"source": "Hello", "target": "你好"}' > test.jsonl
-echo '{"source": "World", "target": "世界"}' >> test.jsonl
-```
-
-Then convert it to Parquet:
-```bash
-python convert.py test.jsonl output.parquet
+python view_parquet.py data.parquet -n 5
 ```
 
 ## Input Format
 
-The input JSONL file should contain one JSON object per line. For example:
+JSONL files should contain one valid JSON object per line:
 
-```json
-{"source": "English text", "target": "Translated text"}
-{"source": "Another English text", "target": "Another translated text"}
+```jsonl
+{"source": "Hello world", "target": "你好世界"}
+{"source": "How are you?", "target": "你好吗？"}
 ```
 
-## Requirements
+## Output Format
 
+The tool converts JSONL to Parquet format, which offers:
+- Efficient columnar storage
+- Schema enforcement
+- Built-in compression
+- Fast data retrieval
+
+Sample Parquet file structure:
+- Total row count
+- Schema information
+- Column data types
+- Compressed data blocks
+
+## Development
+
+```bash
+# Run tests
+python -m pytest tests/
+
+# Build distribution
+python setup.py sdist bdist_wheel
+
+# Install in development mode
+pip install -e .
+```
+
+Best Practices for Development:
+- Use SSD storage for better I/O performance
+- Close other memory-intensive applications
+- Consider using pypy for better performance
+- Validate JSONL format before conversion
+- Ensure consistent schema across records
+- Back up data before conversion
+
+Troubleshooting Development Issues:
+1. ModuleNotFoundError:
+   - Ensure virtual environment is activated
+   - Check for `(venv)` in terminal prompt
+
+2. Memory Errors:
+   - Increase system swap space
+   - Process file in smaller chunks
+
+Requirements:
 - Python 3.6+
 - pandas >= 2.0.0
 - pyarrow >= 14.0.1
 
-## Troubleshooting
+## License
 
-### Virtual Environment Issues
-
-1. If you see "command not found: python3", try:
-```bash
-# On macOS (using Homebrew)
-brew install python3
-
-# On Ubuntu/Debian
-sudo apt-get install python3
-```
-
-2. If you can't activate the virtual environment, make sure you're in the correct directory:
-```bash
-# Check current directory
-pwd
-
-# Should be in the project directory
-cd path/to/jsonl2parquet
-```
-
-### Installation Issues
-
-If you see an error like "Could not find a version that satisfies the requirement requirements.txt", make sure to use the `-r` flag with pip:
-
-```bash
-# Wrong
-pip install requirements.txt
-
-# Correct
-pip install -r requirements.txt
-```
-
-### Common Problems
-
-1. **ModuleNotFoundError**: Make sure your virtual environment is activated (you should see `(venv)` in your terminal prompt)
-2. **Permission Error**: Try running with `sudo` or check file permissions
-3. **Memory Error**: For large files, try increasing your system's swap space 
+This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
