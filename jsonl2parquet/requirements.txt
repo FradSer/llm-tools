@@ -1,0 +1,3 @@
+pandas>=2.0.0
+pandas-stubs>=2.0.0  # Type hints for pandas
+pyarrow>=14.0.1  # Required for Parquet support 
