@@ -1,0 +1,25 @@
+{
+  "name": "tmx2jsonl",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Convert TMX files to JSONL format",
+  "module": "src/index.ts",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "dev": "bun --watch run src/index.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@types/xml2js": "^0.4.14",
+    "sax": "^1.4.1",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/sax": "^1.2.7",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
