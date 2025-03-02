@@ -9,6 +9,7 @@ A high-performance command-line tool to convert JSONL (JSON Lines) files to Parq
 - Progress tracking with verbose mode
 - Support for large files through streaming
 - Built-in Parquet viewer utility
+- Parquet cleaning and sampling capabilities
 
 ## Installation
 
@@ -23,6 +24,11 @@ cd jsonl2parquet
 # Create virtual environment
 python3 -m venv venv
 
+```
+
+3. Activate the virtual environment:
+
+```
 # Activate on macOS/Linux
 source venv/bin/activate
 
@@ -30,25 +36,27 @@ source venv/bin/activate
 # venv\Scripts\activate
 ```
 
-3. Install dependencies:
+4. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Verify installation:
+1. Verify installation:
 ```bash
 python -c "import pandas as pd; import pyarrow; print('Installation successful!')"
 ```
 
 ## Usage
 
-### Options
+### JSONL to Parquet Conversion
+
+#### Options
 
 - `-v, --verbose`: Enable verbose logging for progress tracking
 - `-n, --rows N`: Number of rows to display in viewer (default: 10)
 - `--help`: Display help information
 
-### Examples
+#### Examples
 
 Basic conversion:
 ```bash
@@ -62,6 +70,45 @@ python view_parquet.py data.parquet
 
 # View specific number of rows
 python view_parquet.py data.parquet -n 5
+```
+
+### Parquet Cleaning Tool
+
+The `clean_parquet.py` script provides functionality to clean and process Parquet files containing text data.
+
+#### Features
+
+- Remove rows with source text exactly equal to "-"
+- Remove short phrases below a configurable minimum length
+- Clean leading dashes in text content
+- Analyze text length distribution
+- Sample data from specific length ranges for balanced datasets
+
+#### Options
+
+- `input`: Input Parquet file path
+- `output`: Output cleaned Parquet file path (optional in dry-run mode)
+- `-l, --min-length`: Minimum character length for source text (default: 10)
+- `-d, --dry-run`: Only analyze the data without performing cleaning or saving
+- `-s, --sample`: Sample data from specific length ranges
+- `--sample-size`: Target size for sampled dataset (default: 20000)
+- `-v, --verbose`: Enable verbose logging
+
+#### Examples
+
+Analyze data distribution (dry-run mode):
+```bash
+python clean_parquet.py input.parquet --dry-run
+```
+
+Clean data with custom minimum length:
+```bash
+python clean_parquet.py input.parquet output_cleaned.parquet --min-length 15
+```
+
+Sample data from specific length ranges:
+```bash
+python clean_parquet.py input.parquet sampled_output.parquet --sample --sample-size 10000
 ```
 
 ## Input Format
