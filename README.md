@@ -32,12 +32,28 @@ A command-line tool for efficient conversion of JSONL files to Parquet format, o
   - Memory-efficient processing
 - [Learn more about jsonl2parquet](./jsonl2parquet/README.md)
 
+### 3. json_to_jsonl
+
+A Python utility to convert translation data from JSON array format to JSONL (JSON Lines) format, with field mapping and system role addition.
+
+- **Technology**: Python
+- **Status**: Available ✅
+- **Features**:
+  - Converts JSON arrays to JSONL format (one JSON object per line)
+  - Maps field names (`question` → `prompt`, `content` → `response`)
+  - Adds a configurable system role to each record
+  - Preserves `reasoning_content` field if present
+  - Handles file encoding properly (UTF-8)
+  - Simple command-line interface
+- [Learn more about json_to_jsonl](./json_to_jsonl/README.md)
+
 ## Project Structure
 
 ```
 llm-tools/
 ├── tmx2jsonl/        # TMX to JSONL converter
 ├── jsonl2parquet/    # JSONL to Parquet converter
+├── json_to_jsonl/    # JSON to JSONL converter for translation data
 └── ... (more tools coming soon)
 ```
 
@@ -61,6 +77,7 @@ Each tool has its own setup and usage instructions. Please refer to the individu
 
 - [tmx2jsonl Setup Guide](./tmx2jsonl/README.md)
 - [jsonl2parquet Setup Guide](./jsonl2parquet/README.md)
+- [json_to_jsonl Setup Guide](./json_to_jsonl/README.md)
 
 ## Contributing
 
